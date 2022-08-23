@@ -15,7 +15,6 @@ function formatDate(timestamp){
   return `${day} ${hours}:${minutes}`;
 }
 function displayTemperature(response){
-  console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#description");
@@ -23,6 +22,8 @@ function displayTemperature(response){
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
+
+  celsiusTemp = response.data.main.temp;
 
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   cityElement.innerHTML = response.data.name;
@@ -47,10 +48,37 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-search("Kampala");
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  //removing active class from fah link
+  cel.classList.remove("active");
+  fah.classList.add("active");
+  let temperatureElement = document.querySelector("#temperature");
+  let fahTemperature = (celsiusTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  cel.classList.add("active");
+  fah.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  // let fahTemperature = (celsiusTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+}
+let celsiusTemp = null;
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
+let fah = document.querySelector("#fah-link");
+fah.addEventListener("click", displayFahrenheitTemperature);
+
+let cel = document.querySelector("#cel-link");
+cel.addEventListener("click", displayCelsiusTemperature);
+
+
+search("Kampala");
 
 // function searchCity(city) {
 //   let apiKey = "8c43a9396234aa25ef4906a9eda3077c";
