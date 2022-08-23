@@ -63,7 +63,6 @@ function displayCelsiusTemperature(event) {
   cel.classList.add("active");
   fah.classList.remove("active");
   let temperatureElement = document.querySelector("#temperature");
-  // let fahTemperature = (celsiusTemp * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(celsiusTemp);
 }
 let celsiusTemp = null;
@@ -79,36 +78,3 @@ cel.addEventListener("click", displayCelsiusTemperature);
 
 
 search("Kampala");
-
-// function searchCity(city) {
-//   let apiKey = "8c43a9396234aa25ef4906a9eda3077c";
-//   let unit = "metric";
-//   let apiEndPoint = "https://api.openweathermap.org/data";
-//   let apiUrl = `${apiEndPoint}/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
-//   axios.get(apiUrl).then(showWeather);
-// }
-
-// function handleSubmit(event) {
-//   event.preventDefault();
-//   let city = document.querySelector("#city-input").value;
-//   searchCity(city);
-// }
-// let form = document.querySelector("#search_form");
-// form.addEventListener("submit", handleSubmit);
-
-// searchCity("Paris");
-
-// // current location
-// function showCurrentTemperature(position) {
-//   let units = "metric";
-//   let apiKey = "8c43a9396234aa25ef4906a9eda3077c";
-//   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${units}`;
-//   axios.get(apiUrl).then(showWeather);
-// }
-
-// function getCurrentLocation(event) {
-//   event.preventDefault();
-//   navigator.geolocation.getCurrentPosition(showCurrentTemperature);
-// }
-// let currentLocationButton = document.querySelector("#current-button");
-// currentLocationButton.addEventListener("click", getCurrentLocation);
