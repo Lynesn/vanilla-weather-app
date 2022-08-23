@@ -34,12 +34,22 @@ function displayTemperature(response){
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-let apiKey = "8c43a9396234aa25ef4906a9eda3077c";
-let city = "Kampala";
-let apiEndPoint = "https://api.openweathermap.org/data";
-let apiUrl = `${apiEndPoint}/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiKey = "8c43a9396234aa25ef4906a9eda3077c";
+  let apiEndPoint = "https://api.openweathermap.org/data";
+  let apiUrl = `${apiEndPoint}/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
 
-axios.get(apiUrl).then(displayTemperature);
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+search("Kampala");
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 
 
 // function searchCity(city) {
